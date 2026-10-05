@@ -6,6 +6,7 @@
 html,body{margin:0;height:100%;background:#14101a;overflow:hidden}
 body{display:flex;align-items:center;justify-content:center}
 canvas{image-rendering:pixelated;touch-action:none;user-select:none;-webkit-user-select:none}
+@media (orientation:portrait){canvas{display:none}body::before{content:'XOAY NGANG DIEN THOAI';color:#ffe060;font:bold 20px monospace}}
 </style></head>
 <body><canvas id="g"></canvas>
 <script src="core.js"></script>
@@ -48,8 +49,8 @@ function animal(i, kind, tx, ty) {
   return {
     x, y, w: T, h: T, solid: true,
     draw(c, n) {
-      C.spr(c, egg ? S.chicken : S.pig, x + 2, y + 3);
-      if (n - G.pen[i] > PER[i] * 1000) box(c, x + 6, y - 3 - (Math.sin(n / 150) > 0 ? 1 : 0), 4, 4, egg ? '#f1ead8' : '#c9585a', '#ffffff', '#8a3a3c');
+      C.spr(c, egg ? S.chicken : S.pig, x - 4, y - 4, 2);
+      if (n - G.pen[i] > PER[i] * 1000) box(c, x + 6, y - 9 - (Math.sin(n / 150) > 0 ? 1 : 0), 4, 4, egg ? '#f1ead8' : '#c9585a', '#ffffff', '#8a3a3c');
     },
     menu() {
       const left = PER[i] - (Date.now() - G.pen[i]) / 1000;
@@ -81,7 +82,7 @@ const map = {
     o.push({ x: 25 * T, y: 4 * T, w: T, h: T, solid: true, draw(c) { box(c, this.x + 1, this.y + 3, 14, 11, '#8f6a45', '#b58a5c', '#5e4430'); } });
     // cua hang hat giong: NPC + quay
     o.push({ x: 6 * T, y: 10 * T, w: 3 * T, h: T, solid: true, hh: 6, menu: shopMenu, draw(c) { box(c, this.x, this.y, this.w, this.h, '#8f6a45', '#b58a5c', '#5e4430'); box(c, this.x + 4, this.y + 4, 8, 6, '#6fae4a', '#9ad06a', '#4a8a3c'); box(c, this.x + 18, this.y + 4, 8, 6, '#e6cf6a', '#f2e690', '#b8a040'); } });
-    o.push(C.npc(7.5 * T, 10.4 * T, '#8a5a3a', '#c0453a', shopMenu));
+    o.push(C.npc(7.5 * T, 10.4 * T, '#8a5a3a', '#40b060', shopMenu, 'cap'));
     // bang chi duong sang cho
     o.push({
       x: 12 * T, y: 24 * T, w: 20, h: 9, hh: 10, solid: true,

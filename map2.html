@@ -6,6 +6,7 @@
 html,body{margin:0;height:100%;background:#14101a;overflow:hidden}
 body{display:flex;align-items:center;justify-content:center}
 canvas{image-rendering:pixelated;touch-action:none;user-select:none;-webkit-user-select:none}
+@media (orientation:portrait){canvas{display:none}body::before{content:'XOAY NGANG DIEN THOAI';color:#ffe060;font:bold 20px monospace}}
 </style></head>
 <body><canvas id="g"></canvas>
 <script src="core.js"></script>
@@ -17,19 +18,19 @@ const tiles = C.grid(24, 22, 2, [
   [3, 10, 1, 4, 21], [3, 1, 10, 22, 2], [3, 11, 21, 2, 1]
 ]);
 const SEATS = [[4, 6], [19, 6], [4, 15], [19, 15], [8, 8], [15, 8]];
-const LOOK = [['#2b2233', '#a85a4a'], ['#8a5a3a', '#5f7d4a'], ['#d8b24a', '#4a7aa8'], ['#4a3322', '#c0453a'], ['#6e4a6e', '#d8b24a'], ['#2b2233', '#6fae4a']];
+const LOOK = [['#2b2233', '#e84848', 'cap'], ['#7a4a28', '#58c040', 'chef'], ['#ffd860', '#4aa0e8', null], ['#7a4a28', '#e8a030', 'straw'], ['#8a5a9a', '#ffd860', 'cap'], ['#2b2233', '#40b060', null]];
 
 function customer(i) {
   const [tx, ty] = SEATS[i], x = tx * T + 8, y = ty * T + 12, st = { want: null, back: Date.now() + i * 3000 };
   const order = () => { st.want = C.RECIPES[(Math.random() * C.RECIPES.length) | 0]; };
   return {
-    x: x - 5, y: y - 6, w: 10, h: 6, hh: 26, solid: false,
+    x: x - 5, y: y - 6, w: 10, h: 6, hh: 36, solid: false,
     draw(c, n) {
       if (!st.want && n > st.back) order();
       if (!st.want) return;
       C.chibi(c, x, y + (Math.sin(n / 400 + i) > .7 ? -1 : 0), 0, 0, ...LOOK[i]);
       const t = N[st.want.id], bw = C.tw(t) + 6;
-      box(c, x - (bw >> 1), y - 26, bw, 9, '#f1ead8', '#ffffff', '#b8b3a3'); C.text(c, t, x - (bw >> 1) + 3, y - 24, '#3b2a1c');
+      box(c, x - (bw >> 1), y - 38, bw, 9, '#f1ead8', '#ffffff', '#b8b3a3'); C.text(c, t, x - (bw >> 1) + 3, y - 36, '#3b2a1c');
     },
     menu() {
       const r = st.want; if (!r) return null;
