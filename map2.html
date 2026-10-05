@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Pixel Farm - Quan an</title>
+<style>
+html,body{margin:0;height:100%;background:#14101a;overflow:hidden}
+body{display:flex;align-items:center;justify-content:center}
+canvas{image-rendering:pixelated;touch-action:none;user-select:none;-webkit-user-select:none}
+</style></head>
+<body><canvas id="g"></canvas>
+<script src="core.js"></script>
+<script>
+/* MAP 2: QUAN AN (dung chung save/kho/tien voi index.html qua core.js) */
+const C = Core, T = 16, box = C.box;
+const tiles = [
+  '1111111111',
+  '1222222221',
+  '1222222221',
+  '1222222221',
+  '1222222221',
+  '1222222221',
+  '1222222221',
+  '1222222221',
+  '1222222221',
+  '1222222221',
+  '1222222221',
+  '1111331111'
+];
+const table = (x, y) => ({
+  x, y, w: T, h: T, solid: true,
+  draw(c) { box(c, x + 1, y + 3, 14, 11, '#8f6a45', '#b58a5c', '#5e4430'); }
+});
+const customer = (x, y, hair, shirt) => ({
+  x, y, w: 10, h: 4,
+  draw(c, now) { C.chibi(c, x + 5, y + 4 + (Math.sin(now / 400 + x) > .6 ? -1 : 0), 0, 0, hair, shirt); }
+});
+const map = {
+  tiles, spawn: { x: 80, y: 168 },
+  exits: [{ x: 64, y: 186, w: 32, h: 6, to: 'index.html', spawn: { x: 80, y: 166 } }],
+  hud: () => 'QUAN AN',
+  objs() {
+    return [
+      // quay ban: dung gan quay va bam A de ban mon
+      {
+        x: 3 * T, y: 3 * T, w: 4 * T, h: T, solid: true,
+        draw(c) {
+          box(c, this.x, this.y, this.w, this.h, '#8f6a45', '#b58a5c', '#5e4430');
+          c.fillStyle = '#5e4430'; c.fillRect(this.x + 2, this.y + 9, this.w - 4, 1);
+          box(c, this.x + 8, this.y + 3, 8, 5, '#e8e4d8', '#ffffff', '#b8b3a3');
+        },
+        act() { C.sell(); }
+      },
+      // bang thuc don tren tuong
+      { x: 62, y: 3, w: 36, h: 10, z: -1, draw(c) { box(c, 62, 3, 36, 10, '#a98660', '#c9a678', '#6e4f33'); C.text(c, 'QUAN AN', 66, 6, '#3b2a1c'); } },
+      table(2 * T, 7 * T), table(7 * T, 8 * T),
+      customer(2 * T + 3, 7 * T - 6, '#2b2233', '#a85a4a'),
+      customer(7 * T + 3, 8 * T - 6, '#8a5a3a', '#5f7d4a')
+    ];
+  }
+};
+Core.start(map);
+</script></body></html>

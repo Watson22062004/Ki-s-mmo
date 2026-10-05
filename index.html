@@ -1,82 +1,103 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><title>Kỵ Sĩ Pixel — Full Art</title><style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#000;color:#efe6cf;font-family:"Trebuchet MS",system-ui,sans-serif;overflow:hidden;user-select:none}
-#root,.frame{position:absolute;inset:0}.frame{width:min(100vw,calc(100vh*19.5/9));height:min(100vh,calc(100vw*9/19.5));margin:auto;overflow:hidden;background:#0e1a1f}
-.panel{background:#16282f;border:.35em solid #0a1115;box-shadow:inset 0 0 0 .25em #3c5a63,0 .4em #0007;border-radius:.6em}
-.btn,.tab{font:inherit;font-weight:700;color:#efe6cf;background:#2c4a52;border:.3em solid #0a1115;border-radius:.5em;padding:.45em 1.1em;cursor:pointer}.btn.primary{background:#2f6b45}.btn.small{font-size:1.3em}
-.auth{display:flex;align-items:center;justify-content:space-between;gap:5em;padding:5em;background:radial-gradient(60em 30em at 25% 40%,#2f6b4570,transparent 70%),linear-gradient(#0e1a1f,#0a1115)}
-.auth-hero{flex:1}.auth-sprites{display:flex;gap:1em}.auth-sprites img{width:9em;height:9em;image-rendering:pixelated}.title{font-size:5.2em;margin:.3em 0;color:#e3b04b;text-shadow:.08em .08em #000}.subtitle{font-size:1.7em;line-height:1.45;color:#bcd0d4}
-.auth-form{width:34em;padding:2em;display:flex;flex-direction:column;gap:1em}.tabs{display:flex;gap:.5em}.tab{flex:1;font-size:1.4em}.tab.on{background:#e3b04b;color:#0e1a1f}input{font:inherit;font-size:1.5em;color:#efe6cf;background:#0a1418;border:.25em solid #3c5a63;border-radius:.5em;padding:.5em}
-.chars{padding:3em 5em;background:linear-gradient(#0e1a1f,#0a1115)}.chars-head{display:flex;justify-content:space-between;align-items:center}.chars-head h2{font-size:2.8em;color:#e3b04b}.chars-body{height:80%;display:flex;align-items:center;justify-content:center}.class-pick{display:flex;gap:1em}.class-opt{width:18em;padding:1.2em;background:#16282f;color:#efe6cf;border:.3em solid #3c5a63;border-radius:.6em;cursor:pointer;text-align:center}.class-opt.on{border-color:#e3b04b;background:#1d3a36}.class-opt img{width:8em;height:8em;image-rendering:pixelated}.class-opt b{display:block;font-size:1.6em}.class-opt span{display:block;color:#9fb7bd;margin:.4em}
-.game canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;touch-action:none}.hud{position:absolute;inset:0;pointer-events:none}.hud button,.joystick,.inventory{pointer-events:auto}
-.status{position:absolute;left:1em;top:1em;width:29em;padding:.8em;background:#0a1114cc;border:.25em solid #3c5a63;border-radius:.5em;display:flex;gap:.7em}.avatar{width:6.5em;height:6.5em;background:#1c3139;image-rendering:pixelated}.status-bars{flex:1}.status-name{font-size:1.4em;font-weight:700}.bar{position:relative;height:1.6em;background:#05090b;border:.15em solid #000;border-radius:.3em;overflow:hidden;margin:.25em 0}.bar i{display:block;height:100%}.hp i{background:#d83a3a}.mp i{background:#3d7bdc}.exp i{background:#e3b04b}.bar span{position:absolute;inset:0;text-align:center;font-size:.9em;font-weight:700;text-shadow:.1em .1em #000}
-.top-right{position:absolute;right:1em;top:1em;display:flex;flex-direction:column;align-items:flex-end;gap:.5em}.mapbox{background:#0a1114cc;border:.25em solid #3c5a63;border-radius:.5em;padding:.4em;text-align:center}.mapbox canvas{position:static;width:18em;height:8em;image-rendering:pixelated}.mapname{font-size:1.1em;color:#bcd0d4}.top-buttons{display:flex;gap:.5em}.top-buttons .btn{font-size:1.2em}
-.toasts{position:absolute;top:1em;left:50%;transform:translateX(-50%)}.toast{background:#16282fee;border:.2em solid #3c5a63;border-radius:.5em;padding:.5em 1em;font-size:1.3em}
-.joystick{position:absolute;left:3em;bottom:3em;width:14em;height:14em;border-radius:50%}.joy-ring{position:absolute;inset:0;border-radius:50%;background:#0a111a73;border:.4em solid #efe6cf55}.joy-knob{position:absolute;width:5em;height:5em;left:4.5em;top:4.5em;border-radius:50%;background:#71808a99;border:.25em solid #efe6cf77}.skills{position:absolute;left:50%;bottom:1.2em;transform:translateX(-50%);display:flex;gap:.45em;pointer-events:auto}.skill{width:5.5em;height:5.5em;background:#16282fee;border:.25em solid #3c5a63;border-radius:.5em;color:#fff;font-weight:700;cursor:pointer}.skill b{display:block;color:#e3b04b}.skill small{font-size:.7em}.npcbox{position:absolute;left:50%;top:12%;transform:translateX(-50%);min-width:28em;max-width:42em;background:#0e1a1ff7;border:.3em solid #3c5a63;border-radius:.6em;padding:1em;pointer-events:auto;box-shadow:0 1em 4em #000}.npcbox h3{color:#e3b04b;margin:.2em 0}.npcbox p{color:#bcd0d4}.quest{position:absolute;right:1em;bottom:1em;width:22em;background:#0a1114dd;border:.2em solid #3c5a63;padding:.7em;border-radius:.5em}.skills .skill{font-size:.85em}.attack{position:absolute;right:3em;bottom:3em;width:9em;height:9em;border-radius:50%;background:#6b342cdd;color:#fff;border:.35em solid #efe6cf88;font-weight:800;font-size:1.5em}
-.inventory{position:absolute;inset:6% 8%;background:#0e1a1ff5;border:.35em solid #3c5a63;border-radius:.7em;padding:1.2em;box-shadow:0 1em 4em #000}.inv-head{display:flex;justify-content:space-between;font-size:2em;color:#e3b04b}.inv-grid{display:grid;grid-template-columns:1fr 2fr 1fr;gap:1em;margin-top:1em}.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:.4em}.slot{aspect-ratio:1;background:#0a1418;border:.2em solid #3c5a63;border-radius:.35em;cursor:pointer}.slot img{width:80%;height:80%;image-rendering:pixelated}.detail{padding:1em;background:#0a1418;border:.2em solid #3c5a63;border-radius:.4em}
-@media(max-width:800px){.frame{width:100vw;height:100vh}.auth{padding:2em;gap:1em}.title{font-size:4em}.subtitle{font-size:1.2em}.status{transform:scale(.72);transform-origin:top left}.top-right{transform:scale(.72);transform-origin:top right}.inventory{inset:3%;overflow:auto}.inv-grid{grid-template-columns:1fr}.class-opt{width:11em}}
-</style></head><body><div id="root"></div><script>
-const PALETTE={"k": "#1a1a2e", "w": "#ffffff", "s": "#f2c9a0", "S": "#d9a577", "r": "#b83232", "R": "#e45c5c", "b": "#3a6fd8", "B": "#24408f", "g": "#4caf50", "G": "#2e7d32", "l": "#8bc34a", "y": "#ffd54f", "o": "#ef8a2b", "n": "#8d5a2b", "N": "#5a3818", "a": "#c7cdd6", "A": "#7d8794", "p": "#9b59d0", "P": "#5e2d91", "t": "#e0c9a0", "d": "#3d3d3d", "e": "#e04040", "c": "#6ec6ff"},SPRITES={"warrior": ["................", ".....AAAAAA.....", "....AaaaaaaA....", "....AassssaA....", "....AskssksA....", "....AssssssA....", ".....rrrrrr.....", "...ArrrRRrrrA...", "..sArrrRRrrrAs..", "..s.rrrrrrrr.s..", "....nnnnnnnn....", ".....rr..rr.....", ".....rr..rr.....", ".....nn..nn.....", "....NNN..NNN....", "................"], "archer": ["................", ".....GGGGGG.....", "....GggggggG....", "....GgssssgG....", "....GskssksG....", ".....GssssG.....", "....GggggggG....", "..nsGggggggGsn..", "..n.GggggggG.n..", "..n.nnnnnnnn.n..", "..n..gg..gg..n..", ".....gg..gg.....", ".....gg..gg.....", ".....nn..nn.....", "....NNN..NNN....", "................"], "mage": [".......pp.......", "......pPPp......", ".....pPPPPp.....", "..ppppppppppp...", "....PssssssP..c.", "....PskssksP..n.", ".....ssssss...n.", "...bbbbbbbbbb.n.", "..sbbbbyybbbbsn.", "..s.bbbbbbbb.sn.", "....BBBBBBBB..n.", "....bbbbbbbb..n.", "...bbbbbbbbbb.n.", "...BBBBBBBBBB.n.", "....nn....nn..n.", "................"], "wolf": ["................", "................", "................", "................", "................", "...........A.A..", "..........AAAAA.", "..........AeAAAd", "...AAAAAAAAAAAd.", "..AAAAAAAAAAAAA.", ".AAAAAAAAAAAAAA.", ".AAaaaaaaaaaAA..", "..AAAAAAAAAAAA..", "..AA.AA..AA.AA..", "..AA.AA..AA.AA..", "..dd.dd..dd.dd.."], "goblin": ["................", "................", "................", "..gg........gg..", ".ggg.gggggg.ggg.", "..gggggggggggg..", "....gGeggeGg....", "....gggddggg....", ".....gggggg.....", "....nnnnnnnn..N.", "...gnnnnnnnng.N.", "...g.nnnnnn.gNN.", ".....gg..gg.....", ".....gg..gg.....", "....GGG..GGG....", "................"], "tree": ["......GGGG......", "....GGggggGG....", "...GggggggggG...", "..GggggGgggggG..", "..GgggggggggGg..", ".GggGggggggggGG.", ".GgggggggGgggGG.", ".GggggggggggggG.", "..GgggGggggggG..", "...GGggggggGG...", ".....GGGGGG.....", "......nnnn......", "......nNnn......", "......nNnn......", ".....nNNnn......", "................"], "flower": ["..y..", ".yry.", "..y..", "..g..", "..g..", "......a.", "nnnnnnaa", "......a.", "..pp..", ".pwwp.", "pwwwwp", "pwwwwp", ".pwwp.", "..pp..", "..............Aa", ".............Aaa", "............Aaa.", "...........Aaa..", "..........Aaa...", ".........Aaa....", "........Aaa.....", ".......Aaa......", "..y...Aaa.......", "...y.Aaa........", "....yya.........", "...nnyy.........", "..nn..y.........", ".nn.............", "................", "................"], "bow": ["....nn..........", ".....nn.........", "......n.w.......", ".......nw.......", ".......nw.......", "........nw......", "........nw......", "........nw......", "........nw......", ".......nw.......", ".......nw.......", "......n.w.......", ".....nn.........", "....nn..........", "................", "................"], "staff": ["......cc........", ".....cwwc.......", ".....cwwc.......", "......cc........", ".......n........", ".......n........", ".......n........", ".......n........", ".......n........", ".......n........", ".......N........", ".......N........", ".......N........", "................", "................", "................"], "armor": ["................", "..bbb......bbb..", ".bbbbb....bbbbb.", ".bbbbbbbbbbbbbb.", ".bBbbbbbbbbbbBb.", "..BbbbbyybbbbB..", "..BbbbbyybbbbB..", "...bbbbbbbbbb...", "...bbbbbbbbbb...", "...bBbbbbbbBb...", "...bBbbbbbbBb...", "...BBBBBBBBBB...", "................", "................", "................", "................"], "helmet": ["................", ".......rr.......", ".....aaaaaa.....", "....aaaaaaaa....", "...aaaAAAAaaa...", "...aaAaaaaAaa...", "...aA.aaaa.Aa...", "...aA......Aa...", "...aA......Aa...", "................", "................", "................", "................", "................", "................", "................"]};
-const C={warrior:{name:"Chiến Binh",desc:"Cận chiến, máu trâu, phòng thủ cao.",hp:120,mp:30,atk:10,def:5,range:70,cd:700,cost:0,weapon:"sword"},archer:{name:"Cung Thủ",desc:"Bắn xa, sát thương ổn định, nhanh nhẹn.",hp:90,mp:40,atk:12,def:3,range:230,cd:750,cost:1,weapon:"bow"},mage:{name:"Pháp Sư",desc:"Phép thuật xa, sát thương cao, máu giấy.",hp:75,mp:80,atk:15,def:2,range:190,cd:900,cost:3,weapon:"staff"}};
-const SK={warrior:[{n:"Chém Mạnh",cost:4,cd:2600,p:1.8,r:95,type:"slash"},{n:"Thiết Giáp",cost:7,cd:7000,p:0,r:0,type:"buff"}],archer:[{n:"Mũi Tên Xuyên",cost:5,cd:2500,p:2.1,r:270,type:"shot"},{n:"Bắn Liên Hoàn",cost:8,cd:6000,p:1.35,r:250,type:"multi"}],mage:[{n:"Hỏa Cầu",cost:8,cd:2400,p:2.3,r:250,type:"fire"},{n:"Bão Phép",cost:14,cd:7000,p:1.55,r:180,type:"aoe"}]};
-const QUESTS=[{id:"wolves",name:"Dọn Bãi Sói",need:5,kill:"wolf",reward:80,gold:35},{id:"goblins",name:"Đuổi Goblin",need:4,kill:"goblin",reward:120,gold:60}];
-const DROPS={wolf:["potion_small","bow_short","armor_leather"],goblin:["potion_small","sword_iron","helm_leather"]};
-const I={sword_wood:["Kiếm Gỗ","sword",3,0,0],sword_iron:["Kiếm Sắt","sword",8,0,5],sword_steel:["Kiếm Thép Xanh","sword",16,0,12],bow_short:["Cung Ngắn","bow",4,0,1],bow_long:["Cung Dài","bow",9,0,5],bow_hunter:["Cung Thợ Săn","bow",17,0,12],staff_oak:["Gậy Sồi","staff",4,0,1],staff_crystal:["Gậy Pha Lê","staff",9,0,5],staff_arcane:["Gậy Huyền Bí","staff",18,0,12],armor_cloth:["Áo Vải","armor",0,2,1],armor_leather:["Giáp Da","armor",0,5,4],armor_chain:["Giáp Xích","armor",0,10,10],armor_plate:["Giáp Thép","armor",0,16,18],helm_cap:["Mũ Vải","helmet",0,1,1],helm_leather:["Mũ Da","helmet",0,3,4],helm_iron:["Mũ Sắt","helmet",0,6,10],helm_knight:["Mũ Hiệp Sĩ","helmet",0,10,18]};
-const I0=I; I0.potion_small=["Bình Máu Nhỏ","potion",0,0,0]; I0.potion_mana=["Bình Mana","potion",0,0,0];
-const M={city:{name:"Thành Phố Sơ Khai",w:1280,h:800,theme:"city",spawn:[640,560],obs:[[160,110,260,170,"house"],[860,110,260,170,"house"],[160,520,260,150,"house"],[600,330,96,96,"fountain"]],p:[1190,330,90,150,"field","Bãi Quái"]},field:{name:"Bãi Quái Rừng Sói",w:2400,h:1400,theme:"field",spawn:[150,705],obs:[[800,400,70,50,"rock"],[1400,900,90,60,"rock"],[1900,500,80,60,"rock"],[600,1000,70,50,"rock"]],p:[0,630,90,150,"city","Thành Phố"]}};
-const st={cls:"warrior",name:"Kỵ Sĩ",level:1,exp:0,map:"city",x:640,y:560,hp:120,mp:30,equip:{weapon:"sword_wood",armor:"armor_cloth",helmet:null},inv:[],open:false,last:0,msg:"",gold:100,quest:null,questKills:0,skillCd:[0,0],buff:0};
-let canvas,ctx,fx,fxc,mini,keys=new Set(),last=performance.now(),mon=[],fxs=[],animTime=0,attackAnim=0,hitFlash=0,playerDir=1;
-const mapRand=(seed)=>{let a=seed>>>0;return()=>{a=(a+0x6d2b79f5)|0;let t=Math.imul(a^(a>>>15),a|1);t^=t+Math.imul(t^(t>>>7),t|61);return((t^(t>>>14))>>>0)/4294967296}};
-let decor={};
-function spr(k,s=4){let a=SPRITES[k]||[],c=document.createElement("canvas");c.width=(a[0]||"").length*s;c.height=a.length*s;let g=c.getContext("2d");a.forEach((r,y)=>[...r].forEach((ch,x)=>{if(PALETTE[ch]){g.fillStyle=PALETTE[ch];g.fillRect(x*s,y*s,s,s)}}));return c}
-function url(k,s=4){return spr(k,s).toDataURL()}
-function stat(){let c=C[st.cls],a=c.atk,d=c.def,h=c.hp;Object.values(st.equip).forEach(id=>{if(id){let x=I[id];a+=x[2];d+=x[3];h+=x[4]*5}});return{atk:a,def:d,hp:h,mp:c.mp}}
-function msg(t){st.msg=t;clearTimeout(msg.t);msg.t=setTimeout(()=>st.msg="",2200)}
-function auth(){root.innerHTML=`<div class="frame auth"><div class="auth-hero"><div class="auth-sprites"><img src="${url("warrior",6)}"><img src="${url("archer",6)}"><img src="${url("mage",6)}"></div><h1 class="title">Kỵ Sĩ Pixel</h1><p class="subtitle">Đăng nhập để cùng các nhà thám hiểm khác săn quái, nhặt đồ và lên cấp.</p></div><form class="panel auth-form" onsubmit="event.preventDefault();chars()"><div class="tabs"><button type="button" class="tab on">Đăng nhập</button><button type="button" class="tab">Đăng ký</button></div><input placeholder="Tên đăng nhập" value="tester"><input type="password" placeholder="Mật khẩu" value="123456"><button class="btn primary">Vào game</button></form></div>`}
-function chars(){root.innerHTML=`<div class="frame chars"><div class="chars-head"><h2>Nhân vật của tester</h2><button class="btn small" onclick="auth()">Đăng xuất</button></div><div class="chars-body"><div><div class="class-pick">${["warrior","archer","mage"].map(x=>`<button class="class-opt ${st.cls==x?"on":""}" onclick="pick('${x}')"><img src="${url(x,6)}"><b>${C[x].name}</b><span>${C[x].desc}</span></button>`).join("")}</div><div style="display:flex;gap:1em;margin-top:2em"><input id="nm" value="Kỵ Sĩ" maxlength="14"><button class="btn primary" onclick="start()">Vào game</button></div></div></div></div>`}
-function pick(x){st.cls=x;chars()}
-function start(){st.name=document.getElementById("nm").value.trim()||"Kỵ Sĩ";let c=C[st.cls];Object.assign(st,{level:1,exp:0,map:"city",x:640,y:560,hp:c.hp,mp:c.mp,equip:{weapon:st.cls=="warrior"?"sword_wood":st.cls=="archer"?"bow_short":"staff_oak",armor:"armor_cloth",helmet:null},inv:["potion_small","potion_small"],gold:100,quest:null,questKills:0,skillCd:[0,0],buff:0});spawn();root.innerHTML=`<div class="frame game"><canvas id="cv"></canvas><canvas id="fx"></canvas><div class="hud"><div id="status" class="status"></div><div class="top-right"><div class="mapbox"><canvas id="mm"></canvas><div id="mn" class="mapname"></div></div><div class="top-buttons"><button class="btn" onclick="talkNPC()">NPC</button><button class="btn" onclick="inv()">Túi đồ</button><button class="btn" onclick="chars()">Thoát</button></div></div><div id="toast" class="toasts"></div><div class="joystick"><div class="joy-ring"></div><div class="joy-knob"></div></div><div id="skills" class="skills"></div><button class="attack" onpointerdown="hit()">⚔<br>Đánh</button><div id="inventory"></div><div id="npc"></div><div id="questui"></div></div></div>`;canvas=cv;ctx=cv.getContext("2d");fx=document.getElementById("fx");fxc=fx.getContext("2d");mini=mm;cv.width=1170;cv.height=540;fx.width=1170;fx.height=540;onkeydown=e=>{let k=e.key.toLowerCase();if("wasd".includes(k)||k.startsWith("arrow"))keys.add(k);if(k==" ")hit()};onkeyup=e=>keys.delete(e.key.toLowerCase());requestAnimationFrame(loop)}
-function spawn(){
-  mon=[];
-  if(st.map==="field"){let r=mapRand(1337);for(let i=0;i<14;i++)mon.push({t:"wolf",x:450+r()*800,y:150+r()*1100,h:60,m:60,ai:0,atk:0,flash:0,dir:1});for(let i=0;i<10;i++)mon.push({t:"goblin",x:1300+r()*1000,y:150+r()*1100,h:110,m:110,ai:0,atk:0,flash:0,dir:1});}
-  decor[st.map]=decor[st.map]||(()=>{let r=mapRand(st.map==="city"?11:77),a=[];let m=M[st.map];for(let i=0;i<(m.theme==="city"?40:160);i++)a.push([60+r()*(m.w-120),90+r()*(m.h-150)]);return a})();
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Pixel Farm - Nong trai</title>
+<style>
+html,body{margin:0;height:100%;background:#14101a;overflow:hidden}
+body{display:flex;align-items:center;justify-content:center}
+canvas{image-rendering:pixelated;touch-action:none;user-select:none;-webkit-user-select:none}
+</style></head>
+<body><canvas id="g"></canvas>
+<script src="core.js"></script>
+<script>
+/* MAP 1: NONG TRAI (tile: 0 co, 1 gach, 2 san go, 3 duong da, 4 dat cay) */
+const C = Core, G = C.G, T = 16, box = C.box;
+const DUR = { carrot: 20000, rice: 30000 };   // thoi gian lon (ms)
+const PEN = { chicken: 25000, pig: 45000 };   // thoi gian ra san pham (ms)
+
+const tiles = [
+  '1111111111',
+  '0000000000',
+  '0444002220',
+  '0444002220',
+  '0000000000',
+  '0111111110',
+  '0122222210',
+  '0122222210',
+  '0111331110',
+  '0000330000',
+  '0000330000',
+  '0000330000'
+];
+
+function plot(i) {
+  const x = (1 + i % 3) * T, y = (2 + (i / 3 | 0)) * T, p = G.plots[i];
+  return {
+    x, y, w: T, h: T, z: -1,
+    draw(c, now) {
+      if (!p.s) return;
+      const g = (now - p.t) / DUR[p.s];
+      if (g < .33) { c.fillStyle = '#4a3322'; c.fillRect(x + 6, y + 9, 4, 2); }
+      else if (g < 1) { c.fillStyle = '#4f8a3c'; c.fillRect(x + 7, y + 6, 2, 5); c.fillStyle = '#7fb05a'; c.fillRect(x + 5, y + 6, 2, 2); c.fillRect(x + 9, y + 6, 2, 2); }
+      else if (p.s === 'carrot') { c.fillStyle = '#4f8a3c'; c.fillRect(x + 5, y + 3, 6, 3); c.fillStyle = '#7fb05a'; c.fillRect(x + 6, y + 2, 2, 2); box(c, x + 5, y + 6, 6, 7, '#d9843b', '#f0a65a', '#a85f28'); }
+      else { for (const a of [3, 7, 11]) { c.fillStyle = '#8f8a3a'; c.fillRect(x + a, y + 5, 1, 8); box(c, x + a - 1, y + 2, 3, 5, '#d8c46a', '#f0e090', '#a8933e'); } }
+    },
+    act(now) {
+      if (!p.s) { p.s = G.seed; p.t = now; C.toast('TRONG ' + C.NAMES[p.s]); }
+      else if ((now - p.t) / DUR[p.s] >= 1) { G.inv[p.s]++; C.toast('THU ' + C.NAMES[p.s] + ' +1'); p.s = null; C.save(); }
+      else C.toast('CHUA CHIN');
+    }
+  };
 }
-function drawSprite(k,x,y,s=3,frame=0,flip=false,alpha=1,angle=0){let rows=SPRITES[k]||[];let a=rows.map(r=>r.split(""));
-  // 3 trạng thái animation nhẹ: idle, walk, attack/hit; vẫn giữ pixel-art gốc.
-  if(frame===1 && a.length){a=a.map((r,i)=>{let z=[...r];if(i>=10&&i<15){if((i+frame)%2===0){let q=z[4];z[4]='.';z[5]=q}}return z});}
-  if(frame===2 && a.length){a=a.map((r,i)=>{let z=[...r];if(i===7||i===8){for(let j=0;j<z.length;j++)if(z[j]!=='.'&&j>9){let q=z[j];z[j]='.';if(j+1<z.length)z[j+1]=q;}}return z});}
-  let im=sprFromRows(a.map(r=>r.join("")),s);ctx.save();ctx.globalAlpha=alpha;ctx.translate(x,y);ctx.rotate(angle);if(flip)ctx.scale(-1,1);ctx.drawImage(im,-im.width/2,-im.height);ctx.restore();}
-function sprFromRows(rows,s=4){let c=document.createElement("canvas");c.width=(rows[0]||"").length*s;c.height=rows.length*s;let g=c.getContext("2d");rows.forEach((r,y)=>[...r].forEach((ch,x)=>{if(PALETTE[ch]){g.fillStyle=PALETTE[ch];g.fillRect(x*s,y*s,s,s)}}));return c}
-
-function obstacle(o){let[x,y,w,h,k]=o;if(k=="house"){ctx.fillStyle="#0004";ctx.fillRect(x+8,y+h-8,w,14);ctx.fillStyle="#c9a26b";ctx.fillRect(x,y+60,w,h-60);ctx.fillStyle="#a23b3b";ctx.fillRect(x-10,y,w+20,64);ctx.fillStyle="#5a3818";ctx.fillRect(x+w/2-20,y+h-56,40,56);ctx.fillStyle="#9fd8ff";ctx.fillRect(x+24,y+80,34,30);ctx.fillRect(x+w-58,y+80,34,30)}else if(k=="fountain"){ctx.fillStyle="#8d8d9a";ctx.beginPath();ctx.ellipse(x+w/2,y+h/2,62,42,0,0,7);ctx.fill();ctx.fillStyle="#4a9de0";ctx.beginPath();ctx.ellipse(x+w/2,y+h/2,48,30,0,0,7);ctx.fill()}else{ctx.fillStyle="#7d8794";ctx.beginPath();ctx.ellipse(x+w/2,y+h/2,w/2,h/2,0,0,7);ctx.fill()}}
-function world(){let m=M[st.map],sx=Math.max(0,Math.min(m.w-1170,st.x-585)),sy=Math.max(0,Math.min(m.h-540,st.y-270));ctx.clearRect(0,0,1170,540);ctx.fillStyle=m.theme==="city"?"#4caf50":"#4a8f3e";ctx.fillRect(0,0,1170,540);ctx.save();ctx.translate(-sx,-sy);
-  // nền + đường/tile theo layout gốc
-  ctx.fillStyle="#315f38";ctx.fillRect(0,0,m.w,m.h);ctx.fillStyle=m.theme==="city"?"#4caf50":"#4a8f3e";ctx.fillRect(0,0,m.w,m.h);
-  if(m.theme==="city"){ctx.fillStyle="#9a9aa8";ctx.fillRect(0,340,m.w,120);ctx.fillRect(500,230,280,340);ctx.fillStyle="#74747f";for(let x=0;x<m.w;x+=48)ctx.fillRect(x,398,32,2);for(let y=340;y<460;y+=32)ctx.fillRect(18,y,2,20)}else{ctx.fillStyle="#80623e";ctx.fillRect(0,640,900,130);ctx.fillStyle="#6b5134";for(let x=0;x<900;x+=42)ctx.fillRect(x,705,30,2)}
-  let dec=decor[st.map]||[];dec.forEach(([x,y],i)=>{if(m.theme==="city"&&((y>330&&y<470)||(x>490&&x<790&&y>220&&y<580)))return;drawSprite(i%7===0?"flower":"flower",x,y,3,0,false,.9)});
-  for(let x=20;x<m.w;x+=56){drawSprite("tree",x,52,4);drawSprite("tree",x,m.h+8,4)}for(let y=108;y<m.h;y+=56){drawSprite("tree",16,y,4);drawSprite("tree",m.w-16,y,4)}
-  m.obs.forEach(obstacle);let p=m.p;ctx.fillStyle="#6ec6ff55";ctx.strokeStyle="#d9c1ff";ctx.lineWidth=4;ctx.beginPath();ctx.ellipse(p[0]+p[2]/2,p[1]+p[3]/2,p[2]*.38,p[3]/2,0,0,7);ctx.fill();ctx.stroke();ctx.fillStyle="#e8d9ff";ctx.font="bold 15px Trebuchet MS";ctx.textAlign="center";ctx.fillText(p[5],p[0]+p[2]/2,p[1]-8);
-  if(st.map==="field")mon.forEach(q=>{let frame=q.flash>0?2:(q.ai>0?1:0),bob=q.ai>0?Math.abs(Math.sin(animTime*.012+q.x)) * 2:0;drawSprite(q.t,q.x,q.y-bob,3,frame,q.dir<0,q.h<=0?0.25:1);ctx.fillStyle="#000";ctx.fillRect(q.x-21,q.y-54,42,6);ctx.fillStyle="#d83a3a";ctx.fillRect(q.x-20,q.y-53,40*Math.max(0,q.h/q.m),4);ctx.fillStyle="#fff";ctx.font="13px Trebuchet MS";ctx.fillText(q.t==="wolf"?"Sói Lv3":"Goblin Lv6",q.x,q.y-58)});
-  let moving=keys.size>0,frame=attackAnim>0?2:(moving?1:0),bob=moving?Math.abs(Math.sin(animTime*.018))*3:0;drawSprite(st.cls,st.x,st.y-bob,3,frame,playerDir<0,st.hp<=0?.35:1,attackAnim>0?(playerDir<0?-0.15:0.15):0);ctx.fillStyle="#9dffa0";ctx.font="bold 13px Trebuchet MS";ctx.fillText(st.name+"  Lv"+st.level,st.x,st.y-55);
-  ctx.restore();drawEffects(sx,sy);}
-function drawEffects(sx,sy){fxc.clearRect(0,0,1170,540);for(let i=fxs.length-1;i>=0;i--){let e=fxs[i],age=(performance.now()-e.t)/e.d;if(age>=1){fxs.splice(i,1);continue}let x=e.x-sx,y=e.y-sy;fxc.save();fxc.globalAlpha=1-age;if(e.type==="slash"){fxc.strokeStyle="#fff";fxc.lineWidth=6;fxc.beginPath();fxc.arc(x,y-25,34,e.a-.8,e.a+.8);fxc.stroke()}else if(e.type==="proj"){fxc.fillStyle=e.color;fxc.beginPath();fxc.arc(x,y-25,6+4*(1-age),0,7);fxc.fill()}else if(e.type==="hit"){fxc.strokeStyle=e.color;fxc.lineWidth=4;for(let j=0;j<6;j++){let a=j*Math.PI/3;fxc.beginPath();fxc.moveTo(x+Math.cos(a)*8,y-25+Math.sin(a)*8);fxc.lineTo(x+Math.cos(a)*28*(1-age),y-25+Math.sin(a)*28*(1-age));fxc.stroke()}}else if(e.type==="death"){fxc.strokeStyle="#ffd54f";fxc.lineWidth=3;fxc.beginPath();fxc.arc(x,y-28,15+35*age,0,7);fxc.stroke()}fxc.restore()}if(attackAnim>0){attackAnim=Math.max(0,attackAnim-16)}}
-
-function blocked(x,y){let m=M[st.map];for(let o of m.obs)if(x+18>o[0]&&x-18<o[0]+o[2]&&y+18>o[1]&&y-18<o[1]+o[3])return true;return false}
-function move(dt){let dx=(keys.has("d")||keys.has("arrowright"))-(keys.has("a")||keys.has("arrowleft")),dy=(keys.has("s")||keys.has("arrowdown"))-(keys.has("w")||keys.has("arrowup"));if(dx||dy){let l=Math.hypot(dx,dy);dx/=l;dy/=l;playerDir=dx<0?-1:dx>0?1:playerDir;let nx=st.x+dx*170*dt,ny=st.y+dy*170*dt;if(!blocked(nx,st.y))st.x=nx;if(!blocked(st.x,ny))st.y=ny}let m=M[st.map];st.x=Math.max(40,Math.min(m.w-40,st.x));st.y=Math.max(64,Math.min(m.h-40,st.y));
-  if(st.map==="field")updateMonsters(dt);let p=m.p;if(st.x>p[0]&&st.x<p[0]+p[2]&&st.y>p[1]&&st.y<p[1]+p[3]){st.map=p[4];st.x=M[st.map].spawn[0];st.y=M[st.map].spawn[1];spawn();msg("Đã sang "+M[st.map].name)}}
-function updateMonsters(dt){for(const q of mon){if(q.h<=0)continue;q.flash=Math.max(0,q.flash-dt*1000);q.atk=Math.max(0,q.atk-dt*1000);let d=Math.hypot(st.x-q.x,st.y-q.y);let aggro=q.t==="wolf"?250:210;if(d<aggro&&d>48){let dx=(st.x-q.x)/d,dy=(st.y-q.y)/d;q.x+=dx*(q.t==="wolf"?55:42)*dt;q.y+=dy*(q.t==="wolf"?55:42)*dt;q.dir=dx<0?-1:1;q.ai=1}else{q.ai=Math.max(0,q.ai-dt*2)}if(d<58&&q.atk<=0&&st.hp>0){let dmg=q.t==="wolf"?5:8;st.hp=Math.max(0,st.hp-Math.max(1,dmg-stat().def*(st.buff>0?0.7:0.35)));q.atk=q.t==="wolf"?1300:1700;q.flash=180;fxs.push({type:"hit",x:st.x,y:st.y,t:performance.now(),d:250,color:"#ff6b6b"});if(st.hp<=0)msg("Bạn đã bị hạ! Nhấn Đánh để hồi sinh")}}}
-
-function renderSkills(){let a=SK[st.cls]||[];skills.innerHTML=a.map((x,i)=>`<button class="skill" onclick="cast(${i})"><b>${i+1}</b><small>${x.n}</small><br>${Math.ceil(st.skillCd[i]/1000)}s</button>`).join("")}
-function cast(i){let x=(SK[st.cls]||[])[i],now=performance.now();if(!x||st.skillCd[i]>0)return;if(st.mp<x.cost)return msg("Không đủ MP");st.mp-=x.cost;st.skillCd[i]=x.cd;if(x.type==="buff"){st.buff=6000;fxs.push({type:"death",x:st.x,y:st.y,t:now,d:700});msg("Thiết Giáp: DEF tăng mạnh");return}let targets=mon.filter(q=>q.h>0&&Math.hypot(q.x-st.x,q.y-st.y)<=x.r).sort((a,b)=>Math.hypot(a.x-st.x,a.y-st.y)-Math.hypot(b.x-st.x,b.y-st.y));if(!targets.length)return msg("Không có mục tiêu");let list=x.type==="aoe"?targets:targets.slice(0,x.type==="multi"?3:1);for(let q of list){let d=Math.max(1,Math.round(stat().atk*x.p-(q.t==="wolf"?1:3)));q.h-=d;q.flash=220;floatText(q.x,q.y-70,d,"#ffd54f");fxs.push({type:x.type==="fire"?"proj":"slash",x:q.x,y:q.y,t:now,d:350,a:Math.atan2(q.y-st.y,q.x-st.x),color:"#ff9d45"});if(q.h<=0)killMonster(q)}}
-function killMonster(q){let xp=q.t==="wolf"?14:30;st.exp+=xp;st.questKills+=(st.quest&&st.quest.kill===q.t)?1:0;let drops=DROPS[q.t]||[];if(Math.random()<.65&&st.inv.length<20)st.inv.push(drops[Math.floor(Math.random()*drops.length)]);if(Math.random()<.5){st.gold+=q.t==="wolf"?3:7}fxs.push({type:"death",x:q.x,y:q.y,t:performance.now(),d:500});setTimeout(()=>{let i=mon.indexOf(q);if(i>=0)mon.splice(i,1)},220);msg("Hạ quái! +"+xp+" EXP");while(st.exp>=100){st.exp-=100;st.level++;st.hp=stat().hp;st.mp=C[st.cls].mp;msg("LEVEL UP! "+st.level)}}
-function talkNPC(){if(st.map!=="city")return msg("Hãy về thành phố để gặp NPC");npc.innerHTML=`<div class="npcbox"><h3>Trưởng làng</h3><p>Chào nhà thám hiểm. Chọn một nhiệm vụ:</p>${QUESTS.map(q=>`<button class="btn" style="margin:.2em" onclick="takeQuest('${q.id}')">${q.name} — ${q.need} quái · ${q.reward} EXP + ${q.gold} vàng</button>`).join("")}<button class="btn" onclick="closeNPC()">Đóng</button></div>`}
-function closeNPC(){npc.innerHTML=""}
-function takeQuest(id){let q=QUESTS.find(x=>x.id===id);st.quest=q;st.questKills=0;closeNPC();msg("Nhận nhiệm vụ: "+q.name)}
-function questUI(){if(!st.quest){questui.innerHTML="";return}let q=st.quest;if(st.questKills>=q.need){st.exp+=q.reward;st.gold+=q.gold;msg("Hoàn thành "+q.name+"! +"+q.reward+" EXP, +"+q.gold+" vàng");st.quest=null;st.questKills=0;return}questui.innerHTML=`<div class="quest"><b>${q.name}</b><br>Tiến độ: ${Math.min(st.questKills,q.need)}/${q.need}<br>Thưởng: ${q.reward} EXP · ${q.gold} vàng</div>`}
-function useItem(i){let id=st.inv[i];if(id==="potion_small"){let max=stat().hp;st.hp=Math.min(max,st.hp+45);st.inv.splice(i,1);msg("Hồi 45 HP")}else if(id==="potion_mana"){st.mp=Math.min(C[st.cls].mp,st.mp+25);st.inv.splice(i,1);msg("Hồi 25 MP")}renderInv()}
-function hit(){let c=C[st.cls],s=stat(),now=performance.now();if(st.hp<=0){st.hp=s.hp;st.mp=c.mp;msg("Đã hồi sinh!");return}if(now-st.last<c.cd)return;if(st.mp<c.cost)return msg("Không đủ MP");st.last=now;st.mp=Math.min(c.mp,st.mp-c.cost);let q=mon.filter(q=>q.h>0).sort((a,b)=>Math.hypot(a.x-st.x,a.y-st.y)-Math.hypot(b.x-st.x,b.y-st.y))[0];if(!q||Math.hypot(q.x-st.x,q.y-st.y)>c.range)return msg("Không có mục tiêu trong tầm");let crit=Math.random()<.12,d=Math.max(1,Math.round((s.atk-(q.t==="wolf"?1:3))*(crit?1.8:1)));q.h-=d;q.flash=180;attackAnim=170;let ang=Math.atan2(q.y-st.y,q.x-st.x);fxs.push({type:"slash",x:st.x,y:st.y,t:performance.now(),d:220,a:ang});if(c.weapon==="bow"||c.weapon==="staff")fxs.push({type:"proj",x:q.x,y:q.y,t:performance.now(),d:260,color:c.weapon==="bow"?"#fff":"#d58cff"});fxs.push({type:"hit",x:q.x,y:q.y,t:performance.now(),d:280,color:crit?"#ffd54f":"#fff"});floatText(q.x,q.y-75,(crit?"CRIT ":"")+d,crit?"#ffd54f":"#fff");if(q.h<=0)killMonster(q)}
-function floatText(x,y,t,color){let el=document.createElement("div");el.textContent=t;el.style.cssText=`position:fixed;left:${(x-M[st.map].w/2)*.6+50}%;top:42%;color:${color};font:bold 22px Trebuchet MS;text-shadow:2px 2px #000;pointer-events:none;z-index:20;transform:translate(-50%,0)`;document.body.appendChild(el);el.animate([{transform:"translate(-50%,0)",opacity:1},{transform:"translate(-50%,-55px)",opacity:0}],{duration:650,easing:"ease-out"}).onfinish=()=>el.remove()}
-
-function hud(){let s=stat();status.innerHTML=`<img class="avatar" src="${url(st.cls,4)}"><div class="status-bars"><div class="status-name">${st.name} · ${C[st.cls].name} · Lv${st.level}</div><div class="bar hp"><i style="width:${100*st.hp/s.hp}%"></i><span>HP ${Math.round(st.hp)}/${s.hp}</span></div><div class="bar mp"><i style="width:${100*st.mp/s.mp}%"></i><span>MP ${Math.round(st.mp)}/${s.mp}</span></div><div class="bar exp"><i style="width:${st.exp}%"></i><span>EXP ${st.exp}/100</span></div></div>`;mn.textContent=M[st.map].name;toast.innerHTML=st.msg?`<div class="toast">${st.msg}</div>`:"";let g=mini.getContext("2d"),m=M[st.map];mini.width=288;mini.height=128;g.fillStyle=m.theme=="city"?"#4caf50":"#4a8f3e";g.fillRect(0,0,288,128);g.fillStyle="#9a9aa8";if(m.theme=="city"){g.fillRect(0,54,288,20);g.fillRect(112,37,63,54)}else g.fillRect(0,58,108,15);g.fillStyle="#fff";g.fillRect(st.x/m.w*288-2,st.y/m.h*128-2,4,4)}
-function inv(){st.open=!st.open;renderInv()}function renderInv(){if(!st.open){inventory.innerHTML="";return}let bag=Array.from({length:20},(_,i)=>{let id=st.inv[i];return `<button class="slot" onclick="inspect(${i})">${id?`<img src="${url(I[id][1],3)}">`:""}</button>`}).join("");inventory.innerHTML=`<div class="inventory"><div class="inv-head">Túi đồ · 💰 ${st.gold} <button class="btn small" onclick="inv()">Đóng</button></div><div class="inv-grid"><div><h3>Trang bị</h3><div class="slots">${Object.values(st.equip).map(id=>`<button class="slot">${id?`<img src="${url(I[id][1],3)}">`:""}</button>`).join("")}</div><p>ATK ${stat().atk} · DEF ${stat().def}</p></div><div><h3>Vật phẩm</h3><div class="slots">${bag}</div></div><div id="detail" class="detail">Chọn vật phẩm để xem.</div></div></div>`}function inspect(i){let id=st.inv[i];if(!id)return;let a=I[id];if(a[1]==="potion"){detail.innerHTML=`<b style="color:#e3b04b">${a[0]}</b><p>Dùng để hồi phục.</p><button class="btn primary" onclick="useItem(${i})">Sử dụng</button>`;return}detail.innerHTML=`<b style="color:#e3b04b">${a[0]}</b><p>ATK +${a[2]} · DEF +${a[3]} · HP +${a[4]*5}</p><button class="btn primary" onclick="equip(${i})">Trang bị</button>`}function equip(i){let id=st.inv[i],a=I[id],slot=a[1]=="armor"?"armor":a[1]=="helmet"?"helmet":"weapon";let old=st.equip[slot];st.equip[slot]=id;st.inv[i]=old;st.inv=st.inv.filter(Boolean);renderInv();msg("Đã trang bị "+a[0])}
-function loop(t){st.skillCd=st.skillCd.map(x=>Math.max(0,x-(t-last)));renderSkills();questUI();let dt=Math.min(.05,(t-last)/1000);last=t;animTime=t;move(dt);world();hud();requestAnimationFrame(loop)}setInterval(()=>{try{localStorage.setItem("kysipixel-save",JSON.stringify(st))}catch(e){}},2000);auth();
+function animal(kind, x, y) {
+  const per = PEN[kind], item = kind === 'chicken' ? 'egg' : 'pork';
+  return {
+    x, y, w: T, h: T, solid: true,
+    draw(c, now) {
+      const rdy = now - G.pen[kind] > per, b = rdy && Math.sin(now / 150) > 0 ? 1 : 0;
+      if (kind === 'chicken') {
+        box(c, x + 3, y + 5, 10, 9, '#e8e4d8', '#ffffff', '#b8b3a3');
+        c.fillStyle = '#c0453a'; c.fillRect(x + 7, y + 3, 2, 2);
+        c.fillStyle = '#d98a3b'; c.fillRect(x + 6, y + 9, 4, 1);
+        c.fillStyle = '#1b1420'; c.fillRect(x + 5, y + 7, 1, 1); c.fillRect(x + 10, y + 7, 1, 1);
+      } else {
+        box(c, x + 1, y + 4, 14, 11, '#d99aa0', '#f0b8bc', '#b57a82');
+        c.fillStyle = '#b57a82'; c.fillRect(x + 2, y + 3, 3, 2); c.fillRect(x + 11, y + 3, 3, 2);
+        box(c, x + 5, y + 9, 6, 4, '#c2828a', '#d99aa0', '#9a636a');
+        c.fillStyle = '#1b1420'; c.fillRect(x + 4, y + 7, 1, 1); c.fillRect(x + 11, y + 7, 1, 1);
+      }
+      if (rdy) box(c, x + 6, y - 3 - b, 4, 4, item === 'egg' ? '#f1ead8' : '#c9585a', '#ffffff', '#8a3a3c');
+    },
+    act(now) {
+      if (now - G.pen[kind] > per) { G.inv[item]++; G.pen[kind] = now; C.toast('+1 ' + C.NAMES[item]); C.save(); }
+      else C.toast('DANG LON...');
+    }
+  };
+}
+const map = {
+  tiles, spawn: { x: 80, y: 172 },
+  exits: [{ x: 64, y: 186, w: 32, h: 6, to: 'map2.html', spawn: { x: 80, y: 166 } }],
+  hud: () => 'HAT:' + C.NAMES[G.seed],
+  sLabel: 'HAT',
+  onS() { G.seed = G.seed === 'carrot' ? 'rice' : 'carrot'; C.toast('HAT ' + C.NAMES[G.seed]); },
+  objs() {
+    const o = [0, 1, 2, 3, 4, 5].map(plot);
+    o.push(animal('chicken', 6 * T, 2 * T), animal('pig', 8 * T, 3 * T));
+    // bep nau trong nha
+    o.push({
+      x: 3 * T, y: 6 * T, w: T, h: T, solid: true,
+      draw(c, now) {
+        box(c, this.x, this.y, T, T, '#6d6a75', '#8c8996', '#4a4752');
+        c.fillStyle = '#2b2733'; c.fillRect(this.x + 3, this.y + 4, 4, 4); c.fillRect(this.x + 9, this.y + 4, 4, 4);
+        c.fillStyle = Math.sin(now / 120) > 0 ? '#e8a23b' : '#d9743b'; c.fillRect(this.x + 4, this.y + 5, 2, 2); c.fillRect(this.x + 10, this.y + 5, 2, 2);
+      },
+      act() { C.cook(); }
+    });
+    o.push({ x: 6 * T, y: 6 * T, w: T, h: T, solid: true, draw(c) { box(c, this.x + 1, this.y + 3, 14, 11, '#8f6a45', '#b58a5c', '#5e4430'); } });
+    // bang chi duong sang quan
+    o.push({ x: 70, y: 150, w: 20, h: 9, z: -1, draw(c) { box(c, 70, 150, 20, 9, '#a98660', '#c9a678', '#6e4f33'); C.text(c, 'QUAN', 72, 152, '#3b2a1c'); } });
+    return o;
+  }
+};
+Core.start(map);
 </script></body></html>
