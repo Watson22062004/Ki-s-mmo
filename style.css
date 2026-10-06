@@ -1,0 +1,39 @@
+/* Bảng màu: miền Tây — lá dừa, đất phù sa, mái tôn đỏ của quầy xôi */
+:root{--ink:#2a1a10;--paper:#f6ecd2;--paper2:#e9d8ad;--leaf:#4f9a45;--leafd:#2f6a2e;--clay:#c8462e;--gold:#f2b632;--night:#16251c;--soil:#8b5a2b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--night) radial-gradient(circle at 20% 0,#24402d,transparent 60%);color:var(--ink);font:400 15px/1.45 "Be Vietnam Pro",system-ui,sans-serif;min-height:100vh}
+.ic{width:24px;height:24px;image-rendering:pixelated;vertical-align:middle;flex:none}
+[data-ic]{display:inline-flex}
+header{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;max-width:1040px;margin:0 auto;padding:14px 16px}
+.logo{display:flex;align-items:center;gap:10px;color:var(--paper);font-weight:800;font-size:22px;letter-spacing:-.01em}
+.logo .ic{width:36px;height:36px}
+#hud{display:flex;gap:8px}
+.chip{display:flex;align-items:center;gap:6px;background:var(--paper);border:3px solid var(--ink);box-shadow:0 3px 0 #000a;padding:2px 10px 2px 6px;font-weight:600}
+.wrap{display:grid;gap:16px;max-width:1040px;margin:0 auto;padding:0 16px 16px}
+@media(min-width:860px){.wrap{grid-template-columns:1.15fr 1fr;align-items:start}.left{position:sticky;top:12px}}
+#cv{width:100%;display:block;image-rendering:pixelated;border:4px solid var(--ink);box-shadow:0 6px 0 #000a;background:#62a048}
+#toast{min-height:30px;margin-top:12px;padding:4px 10px;font-weight:600;color:var(--gold)}
+nav{display:flex;gap:4px;margin-bottom:-3px;position:relative;z-index:1}
+nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px 8px;font:600 13px "Be Vietnam Pro",sans-serif;background:var(--paper2);color:#6b4a30;border:3px solid var(--ink);border-bottom:0;cursor:pointer}
+nav button.on{background:var(--paper);color:var(--ink)}
+main{background:var(--paper);border:3px solid var(--ink);box-shadow:0 6px 0 #000a;padding:6px 14px 12px}
+h3{margin:16px 0 8px;font-size:16px;font-weight:800;color:var(--leafd)}
+.hint{margin:0 0 6px;font-size:13px;color:#6b4a30}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;margin-bottom:8px;background:#fffaf0;border:3px solid var(--ink)}
+.row.sel{background:#fff0b8;box-shadow:inset 0 0 0 3px var(--gold)}
+.row .name{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
+.row small{display:block;font-size:12px;color:#7a5a40}
+.row .ing{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;margin-top:2px}
+.ing span{display:inline-flex;align-items:center;gap:2px}.ing .ic{width:16px;height:16px}
+.lack{color:var(--clay);font-weight:600}
+.btn,button.btn{font:600 14px "Be Vietnam Pro",sans-serif;color:#fff;background:var(--leaf);border:3px solid var(--ink);box-shadow:0 3px 0 var(--leafd),0 3px 0 3px var(--ink);padding:5px 12px;margin-bottom:3px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.btn:active{transform:translateY(3px);box-shadow:0 0 0 3px var(--ink)}
+.btn.gold{background:var(--gold);color:var(--ink);box-shadow:0 3px 0 #b8841c,0 3px 0 3px var(--ink)}
+.btn.red{background:var(--clay);box-shadow:0 3px 0 #8a2d1c,0 3px 0 3px var(--ink)}
+.btn.ghost{background:transparent;color:var(--paper);border-color:#ffffff40;box-shadow:none;font-size:12px}
+.btn:focus-visible,nav button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.btn .ic{width:18px;height:18px}
+.bar{height:10px;flex:1;min-width:50px;background:var(--paper2);border:2px solid var(--ink)}.bar i{display:block;height:100%;background:repeating-linear-gradient(90deg,var(--leaf) 0 6px,#6dbd5e 6px 8px)}
+.bar.warn i{background:var(--clay)}
+b.n{font-weight:800}footer{text-align:center;padding:8px 0 24px}
+.empty{padding:10px 0;color:#7a5a40}

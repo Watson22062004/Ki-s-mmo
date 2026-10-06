@@ -1,97 +1,31 @@
 <!DOCTYPE html>
 <html lang="vi"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Pixel Farm - Nong trai</title>
-<style>
-html,body{margin:0;height:100%;background:#14101a;overflow:hidden}
-body{display:flex;align-items:center;justify-content:center}
-canvas{image-rendering:pixelated;touch-action:none;user-select:none;-webkit-user-select:none}
-@media (orientation:portrait){canvas{display:none}body::before{content:'XOAY NGANG DIEN THOAI';color:#ffe060;font:bold 20px monospace}}
-</style></head>
-<body><canvas id="g"></canvas>
-<script src="core.js"></script>
-<script>
-/* MAP 1: NONG TRAI 32x28 - cham vao o dat / vat nuoi / bep / NPC de mo menu */
-const C = Core, G = C.G, T = 16, N = C.NAMES, S = C.S, box = C.box;
-const DUR = { carrot: 20, rice: 30 };   // giay lon sau khi tuoi nuoc
-const PER = [25, 25, 45, 45];           // giay ra san pham cua 4 vat nuoi
-
-const tiles = C.grid(32, 28, 0, [
-  [1, 0, 0, 32, 1], [1, 0, 27, 32, 1], [1, 0, 0, 1, 28], [1, 31, 0, 1, 28],
-  [3, 1, 12, 30, 2], [3, 15, 9, 2, 19],
-  [4, 3, 3, 4, 3], [2, 10, 3, 6, 4],
-  [1, 19, 2, 9, 7], [2, 20, 3, 7, 5], [3, 22, 8, 2, 1],
-  [5, 22, 17, 7, 6]
-]);
-
-function plot(i) {
-  const p = G.plots[i], x = (3 + i % 4) * T, y = (3 + (i / 4 | 0)) * T;
-  const gr = n => p.w ? Math.min(1, (n - p.t) / 1000 / DUR[p.s]) : 0;
-  return {
-    x, y, w: T, h: T, z: -1,
-    draw(c, n) {
-      if (p.w) { c.globalAlpha = .3; c.fillStyle = '#2b1c10'; c.fillRect(x, y, T, T); c.globalAlpha = 1; }
-      if (!p.s) return; const g = gr(n);
-      S && C.spr(c, g >= 1 ? (p.s === 'carrot' ? S.carrot : S.rice) : g > .5 ? S.sprout : S.seed, x + 2, y + 3);
-    },
-    menu() {
-      const n = Date.now();
-      if (!p.s) return { title: 'DAT TRONG', items: ['carrot', 'rice'].map(k => ({ label: 'TRONG ' + N[k] + ' (' + G.inv['seed_' + k] + ')', off: G.inv['seed_' + k] < 1, fn() { G.inv['seed_' + k]--; p.s = k; p.w = 0; C.toast('DA GIEO HAT'); } })) };
-      if (!p.w) return { title: N[p.s] + ' CAN NUOC', items: [{ label: 'TUOI NUOC', fn() { p.w = 1; p.t = Date.now(); C.toast('DA TUOI NUOC'); } }] };
-      const g = gr(n);
-      if (g < 1) return { title: N[p.s] + ' DANG LON', items: [{ label: 'CON ' + Math.ceil(DUR[p.s] * (1 - g)) + ' GIAY', off: true, fn() {} }] };
-      return { title: N[p.s] + ' DA CHIN', items: [{ label: 'THU HOACH +2', fn() { G.inv[p.s] += 2; C.stat(p.s, 2); C.toast('+2 ' + N[p.s]); p.s = null; } }] };
-    }
-  };
-}
-function animal(i, kind, tx, ty) {
-  const x = tx * T, y = ty * T, egg = kind === 'chicken', item = egg ? 'egg' : 'pork', nm = egg ? 'GA' : 'LON';
-  return {
-    x, y, w: T, h: T, solid: true,
-    draw(c, n) {
-      C.spr(c, egg ? S.chicken : S.pig, x - 4, y - 4, 2);
-      if (n - G.pen[i] > PER[i] * 1000) box(c, x + 6, y - 9 - (Math.sin(n / 150) > 0 ? 1 : 0), 4, 4, egg ? '#f1ead8' : '#c9585a', '#ffffff', '#8a3a3c');
-    },
-    menu() {
-      const left = PER[i] - (Date.now() - G.pen[i]) / 1000;
-      if (left <= 0) return { title: nm + ' DA SAN SANG', items: [{ label: 'THU ' + N[item], fn() { G.inv[item]++; G.pen[i] = Date.now(); if (egg) C.stat('egg'); C.toast('+1 ' + N[item]); } }] };
-      return { title: nm + ' DANG LON', items: [{ label: 'CON ' + Math.ceil(left) + ' GIAY', off: true, fn() {} }] };
-    }
-  };
-}
-const buy = (k, price) => ({ label: 'MUA ' + N['seed_' + k] + ' ' + price + 'G', off: G.money < price, fn() { G.money -= price; G.inv['seed_' + k]++; C.toast('DA MUA ' + N['seed_' + k]); } });
-const shopMenu = () => ({ title: 'CUA HANG HAT GIONG', items: [buy('carrot', 5), buy('rice', 8)] });
-
-const map = {
-  cols: 32, rows: 28, tiles, name: 'NONG TRAI', spawn: { x: 15.5 * T, y: 15 * T },
-  exits: [{ x: 15 * T, y: 27 * T + 4, w: 2 * T, h: 12, to: 'map2.html', spawn: { x: 12 * T, y: 18 * T } }],
-  objs() {
-    const o = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(plot);
-    o.push(animal(0, 'chicken', 11, 3), animal(1, 'chicken', 13, 3), animal(2, 'pig', 11, 5), animal(3, 'pig', 13, 5));
-    // bep (nha)
-    o.push({
-      x: 21 * T, y: 4 * T, w: T, h: T, solid: true,
-      draw(c, n) {
-        box(c, this.x, this.y, T, T, '#6d6a75', '#8c8996', '#4a4752');
-        c.fillStyle = '#2b2733'; c.fillRect(this.x + 3, this.y + 4, 4, 4); c.fillRect(this.x + 9, this.y + 4, 4, 4);
-        c.fillStyle = Math.sin(n / 120) > 0 ? '#e8a23b' : '#d9743b'; c.fillRect(this.x + 4, this.y + 5, 2, 2); c.fillRect(this.x + 10, this.y + 5, 2, 2);
-        c.fillStyle = '#4a4752'; c.fillRect(this.x + 2, this.y + 11, 12, 2);
-      },
-      menu() { return { title: 'BEP NAU AN', items: C.RECIPES.map(r => ({ label: N[r.id] + ':' + r.hint, off: !C.canCook(r), fn() { C.cook(r); } })) }; }
-    });
-    o.push({ x: 25 * T, y: 4 * T, w: T, h: T, solid: true, draw(c) { box(c, this.x + 1, this.y + 3, 14, 11, '#8f6a45', '#b58a5c', '#5e4430'); } });
-    // cua hang hat giong: NPC + quay
-    o.push({ x: 6 * T, y: 10 * T, w: 3 * T, h: T, solid: true, hh: 6, menu: shopMenu, draw(c) { box(c, this.x, this.y, this.w, this.h, '#8f6a45', '#b58a5c', '#5e4430'); box(c, this.x + 4, this.y + 4, 8, 6, '#6fae4a', '#9ad06a', '#4a8a3c'); box(c, this.x + 18, this.y + 4, 8, 6, '#e6cf6a', '#f2e690', '#b8a040'); } });
-    o.push(C.npc(7.5 * T, 10.4 * T, '#8a5a3a', '#40b060', shopMenu, 'cap'));
-    // bang chi duong sang cho
-    o.push({
-      x: 12 * T, y: 24 * T, w: 20, h: 9, hh: 10, solid: true,
-      menu() { return { title: 'BANG CHI DUONG', items: [{ label: 'DI SANG CHO', fn() { C.go('map2.html', { x: 12 * T, y: 18 * T }); } }] }; },
-      draw(c) { box(c, this.x + 8, this.y + 7, 3, 9, '#8a6a46', '#a8855a', '#5e4430'); box(c, this.x, this.y - 4, 20, 9, '#a98660', '#c9a678', '#6e4f33'); C.text(c, 'CHO', this.x + 4, this.y - 2, '#3b2a1c'); }
-    });
-    [[2, 2], [2, 6], [1, 9], [8, 6], [9, 9], [18, 10], [29, 10], [3, 16], [6, 18], [3, 22], [9, 22], [19, 20], [19, 24], [29, 15], [12, 16], [8, 25], [27, 25], [29, 5]].forEach(([a, b]) => o.push(C.tree(a, b)));
-    return o;
-  }
-};
-Core.start(map);
-</script></body></html>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tiệm Xôi Bến Dừa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css"></head>
+<body>
+<header><div class="logo"><i data-ic="dua"></i><span>Tiệm Xôi Bến Dừa</span></div><div id="hud"></div></header>
+<div class="wrap">
+ <section class="left"><canvas id="cv" width="320" height="180"></canvas><div id="toast"></div></section>
+ <section class="right">
+  <nav id="tabs">
+   <button data-tab="farm" class="on"><i data-ic="nep"></i>Nông trại</button>
+   <button data-tab="market"><i data-ic="coin"></i>Chợ</button>
+   <button data-tab="shop"><i data-ic="xoi_dau"></i>Tiệm xôi</button>
+   <button data-tab="bag"><i data-ic="cam"></i>Kho</button>
+  </nav>
+  <main id="panel"></main>
+ </section>
+</div>
+<footer><button class="btn ghost" data-act="reset">Chơi lại từ đầu</button></footer>
+<script src="js/data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/state.js"></script>
+<script src="js/farm.js"></script>
+<script src="js/market.js"></script>
+<script src="js/kitchen.js"></script>
+<script src="js/render.js"></script>
+<script src="js/main.js"></script>
+</body></html>
